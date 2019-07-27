@@ -1,0 +1,36 @@
+@charset;
+
+.container-fluid {
+	background-color: #87CEFA;
+}
+
+.col-md-10 {
+	background-color: #fff;
+}
+
+.col-md-7 {
+	background-color: #fff;
+}
+
+.col-md-3 {
+	background-color: #fff;
+	padding-top: 2%;
+	padding-bottom: 2%;
+}
+
+.rodape {
+	background-color: #87CEFA;
+	padding-top: 1%;
+	padding-bottom: 1%;
+}
+
+.img-rounded {
+	width: 15%;
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.embed-responsive-item {
+	padding: 5% 1% 5% 1%;
+
+}
+
