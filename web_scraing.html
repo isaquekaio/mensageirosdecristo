@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Mensageiros de Cristo</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<img src="assets/img/biblia.jpg" class="img-responsive" alt="Biblia">
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<nav class="navbar navbar-default"> 
+				    <div class="navbar-header">
+				      	<a class="navbar-brand" href="index.html">Mensageiros de Cristo</a>
+				    </div>
+				    <ul class="nav navbar-nav">
+				     	<li><a href="index.html">Home</a></li><!--class="active elemento não utilizado-->
+						<li class="active">
+							<a href="web_scraing.html">Versículos Diários</a>
+						</li>
+				      	<li><a href="https://www.facebook.com/MesnsageiroDeCristo/" target="new">Facebook</a></li>
+				    </ul>
+				</nav>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+		<div class="row">
+			<div class="col-md-1"></div>
+				<div class="col-md-10">
+					<h1 class="text-center"><b>Versículos Diários</b></h1>
+
+					<blockquote >
+						<div id="exibir"></div>
+						<cite>
+				
+						</cite>
+					</blockquote>
+
+					<script type="text/javascript">
+						var url = "https://www.bibliaonline.com.br/acf"; 
+						var proxy = "https://cors-anywhere.herokuapp.com/";
+						scraper = function(url){
+							
+							let x  = new XMLHttpRequest();
+							x.onreadystatechange = function(){
+								if(this.readyState==4 &&
+									this.status == 200){
+
+									let response = this.responseText;
+
+									parser = new DOMParser();
+									xmlDoc = parser.parseFromString(response,"text/html");
+									let regex = /<p class="jss39">+([\w \s \d záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ , . ; : ]+)/gmi;
+																	
+									document.getElementById("exibir").innerHTML = "<p>"+response.match(regex)+"</p>";
+								
+								}
+							}
+
+							x.open("GET", url);
+							x.send();
+						}
+						scraper(proxy+url);
+
+
+					</script>
+				</div>
+			<div class="col-md-1"></div>
+		</div>
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-10 rodape"><p class="text-center">Copyright 2017 - by Isaque Kaio</p></div>
+			<div class="col-md-1"></div>
+		</div>
+	</div>
+	<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+	<script type="text/javascript" src="assets/js/bootstrap.js"></script>
+</body>
+</html>
