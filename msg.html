@@ -39,9 +39,9 @@
 			<div class="col-md-1"></div>
 				<div class="col-md-10">
 					<h1 class="text-center"><b>Versículos Diários</b></h1>
-
+					<p class="text-justify" style="font-size: 1.4em;">Olá, temos um desafio para você, se você observar a baixo, o texto não apresenta <strong>referência bíblica</strong>. Convidamos você a pesquisar no <a href="https://www.google.com/" target="new">Google</a> ou no site <a href="https://www.bibliaonline.com.br/acf" target="new">Bíblia Online</a>. Se você descobrir a localização dos textos Bíblicos e enviar uma mensagem para <a href="https://www.facebook.com/MesnsageiroDeCristo/" target="new">Mensageiros de Cristo</a>. você terá uma ótima surpresa ao final do <strong>desafio</strong>.</p>
 					<blockquote >
-						<div id="exibir"></div>
+						<div id="show"></div>
 						<cite>
 				
 						</cite>
@@ -61,9 +61,9 @@
 
 									parser = new DOMParser();
 									xmlDoc = parser.parseFromString(response,"text/html");
-									let regex = /<p class="jss39">+([\w \s \d záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ , . ; : ]+)/gmi;
+									let regex = /<p class="jss39">+([\w \s \d záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ , ; : . ]+)/gmi;
 																	
-									document.getElementById("exibir").innerHTML = "<p>"+response.match(regex)+"</p>";
+									document.getElementById("show").innerHTML = "<p>"+response.match(regex)+"</p>";
 								
 								}
 							}
