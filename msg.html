@@ -39,32 +39,39 @@
 			<div class="col-md-1"></div>
 				<div class="col-md-10">
 					<h1 class="text-center"><b>Versículos Diários</b></h1>
-					<p class="text-justify" style="font-size: 1.4em;">Olá, temos um desafio para você, se você observar a baixo, o texto não apresenta <strong>referência bíblica</strong>. Convidamos você a pesquisar no <a href="https://www.google.com/" target="new">Google</a> ou no site <a href="https://www.bibliaonline.com.br/acf" target="new">Bíblia Online</a>. Se você descobrir a localização dos textos Bíblicos e enviar uma mensagem para <a href="https://www.facebook.com/MesnsageiroDeCristo/" target="new">Mensageiros de Cristo</a>. Você terá uma ótima surpresa ao final do <strong>desafio</strong>.</p>
+					<p class="text-justify" style="font-size: 1.4em;">Olá, para a sua meditação ou reflexão, postamos <b>Versículos Diários</b> e convidamos a você para acessar e conhecer a nossa Fan Page <a href="https://www.facebook.com/MesnsageiroDeCristo/" target="new">Mensageiros de Cristo</a> no <a href="https://www.facebook.com/" target="new">Facebook</a>. Lá postamos e compartilhamos diversos conteúdos para o público Cristão.
 					<blockquote >
-						<div id="show"></div>
-						<cite>
-				
-						</cite>
+						<div id="versiculo1"></div>
+						<footer>
+							<cite id="referencia1"></cite>
+						</footer>
+					</blockquote>
+
+					<blockquote >
+						<div id="versiculo2"></div>
+						<footer>
+							<cite id="referencia2"></cite>
+						</footer>
 					</blockquote>
 
 					<script type="text/javascript">
 						var url = "https://www.bibliaonline.com.br/acf"; 
-						var proxy = "https://cors-anywhere.herokuapp.com/";
+						var proxy = "https://secret-ocean-49799.herokuapp.com/";
 						scraper = function(url){
 							
 							let x  = new XMLHttpRequest();
 							x.onreadystatechange = function(){
 								if(this.readyState==4 &&
 									this.status == 200){
-
 									let response = this.responseText;
-
 									parser = new DOMParser();
-									xmlDoc = parser.parseFromString(response,"text/html");
-									let regex = /<p class="jss39">+([\w \s \d záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ , ; : . ]+)/gmi;
-																	
-									document.getElementById("show").innerHTML = "<p>"+response.match(regex)+"</p>";
-								
+									var doc = parser.parseFromString(response, "text/html");
+														
+									document.getElementById("versiculo1").innerHTML = doc.getElementsByTagName("p")[0].innerHTML;
+									document.getElementById("referencia1").innerHTML = doc.getElementsByTagName("a")[2].innerHTML;
+
+									document.getElementById("versiculo2").innerHTML = doc.getElementsByTagName("p")[1].innerHTML;
+									document.getElementById("referencia2").innerHTML = doc.getElementsByTagName("a")[3].innerHTML;
 								}
 							}
 
