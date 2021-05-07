@@ -40,17 +40,25 @@
 				<div class="col-md-10">
 					<h1 class="text-center"><b>Versículos Diários</b></h1>
 					<p class="text-justify" style="font-size: 1.4em;">Olá, para a sua meditação ou reflexão, postamos <b>Versículos Diários</b> e convidamos a você para acessar e conhecer a nossa Fan Page <a href="https://www.facebook.com/MesnsageiroDeCristo/" target="new">Mensageiros de Cristo</a> no <a href="https://www.facebook.com/" target="new">Facebook</a>. Lá postamos e compartilhamos diversos conteúdos para o público Cristão.
-					<blockquote >
+
+					<blockquote id="exibir1">
 						<div id="versiculo1"></div>
 						<footer>
 							<cite id="referencia1"></cite>
 						</footer>
 					</blockquote>
 
-					<blockquote >
+					<blockquote id="exibir2">
 						<div id="versiculo2"></div>
 						<footer>
 							<cite id="referencia2"></cite>
+						</footer>
+					</blockquote>
+
+					<blockquote id="exibir3">
+						<div id="versiculo"></div>
+						<footer>
+							<cite id="referencia"></cite>
 						</footer>
 					</blockquote>
 
@@ -66,12 +74,37 @@
 									let response = this.responseText;
 									parser = new DOMParser();
 									var doc = parser.parseFromString(response, "text/html");
-														
-									document.getElementById("versiculo1").innerHTML = doc.getElementsByTagName("p")[0].innerHTML;
-									document.getElementById("referencia1").innerHTML = doc.getElementsByTagName("a")[2].innerHTML;
 
-									document.getElementById("versiculo2").innerHTML = doc.getElementsByTagName("p")[1].innerHTML;
-									document.getElementById("referencia2").innerHTML = doc.getElementsByTagName("a")[3].innerHTML;
+									if (doc.getElementsByTagName("p").length <= 2){
+										document.getElementById("versiculo1").innerHTML = doc.getElementsByTagName("p")[0].innerHTML;
+										document.getElementById("referencia1").innerHTML = doc.getElementsByTagName("a")[2].innerHTML;
+										document.getElementById("versiculo2").innerHTML = doc.getElementsByTagName("p")[1].innerHTML;
+										document.getElementById("referencia2").innerHTML = doc.getElementsByTagName("a")[3].innerHTML;
+										document.getElementById("exibir1").hidden = false;
+										document.getElementById("exibir2").hidden = false;
+										document.getElementById("exibir3").hidden = true;
+									}else {
+										document.getElementById("exibir1").hidden = true;
+										document.getElementById("exibir2").hidden = true;
+										document.getElementById("exibir3").hidden = false;
+										var i;
+										var versiculo = [];
+										for(i=0; i < doc.getElementsByTagName("p").length; i++){
+											versiculo[i] = doc.getElementsByTagName("p")[i];
+										}		
+
+										for(i=0; i < doc.getElementsByTagName("p").length; i++){
+											var p = document.createElement("p");
+											p.textContent = versiculo[i].innerHTML;
+											document.getElementById("versiculo").appendChild(p);
+										}
+
+										if (typeof(document.getElementsByTagName("p")[0]) === "undefined" || document.getElementsByTagName("p")[0] != ""){
+											document.getElementById("referencia").appendChild(doc.getElementsByTagName("a")[2].innerHTML);
+										} else if (typeof(document.getElementsByTagName("p")[1]) === "undefined" || document.getElementsByTagName("p")[1] != ""){
+											document.getElementById("referencia").appendChild(doc.getElementsByTagName("a")[3].innerHTML);
+										}
+									}
 								}
 							}
 
